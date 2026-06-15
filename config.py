@@ -1,7 +1,17 @@
-# config.py
 from pathlib import Path
+import sys
 
-BASE_DIR = Path(__file__).resolve().parent
+if getattr(sys, "frozen", False):
+    # PyInstaller로 빌드된 exe인 경우
+    BASE_DIR = Path(sys._MEIPASS)
+else:
+    # 개발 환경 (py 파일로 실행)
+    BASE_DIR = Path(__file__).resolve().parent
+
+# LDPlayer 경로 (설치 후 실제 경로로 수정)
+LDPLAYER_PATH = r"C:\Program Files\LDPlayer\LDPlayer.exe"
+ADB_PATH = r"C:\Program Files\LDPlayer\LDPlayer4.0\adb.exe"
+ADB_DEVICE = "127.0.0.1:5554"
 
 # APK 파일 경로
 APK_DIR = BASE_DIR / "apks"
